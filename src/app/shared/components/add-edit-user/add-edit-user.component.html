@@ -1,0 +1,54 @@
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12 mt-5 pt-4 mb-5">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Enter your name!" formControlName="name">
+                    </mat-form-field>
+                    <span *ngIf="!userForm.get('name').valid && userForm.get('name').touched" class="help-block">Name must be provided!</span>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Enter your email!" formControlName="email">
+                    </mat-form-field>
+                    <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched" class="help-block">Please enter a valid email!</span>
+                </div>
+                <div class="form-group mt-2">
+                    <mat-form-field class="w-100">
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dob">
+                        <mat-hint align="end">MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <span *ngIf="!userForm.get('dob').valid && userForm.get('dob').touched" class="help-block">Please select a date!</span>
+                </div>
+                <div class="form-group mt-4">
+                    <mat-label style="font-size: 16px;">Gender: </mat-label>
+                    <mat-radio-group class="ms-4" formControlName="gender">
+                        <mat-radio-button *ngFor="let gender of genders" [value]="gender">{{gender |
+                            titlecase}}</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="form-group mt-3">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Role</mat-label>
+                        <mat-select placeholder="Select Role" formControlName="role">
+                            <mat-option *ngFor="let role of roles" [value]="role.id" [disabled]="role.name==='Admin'">{{role.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="form-group mt-3" formArrayName="hobbies">
+                    <mat-label style="font-size: 16px;">Hobbies: </mat-label>
+                    <mat-checkbox *ngFor="let hobby of hobbies; let i = index" [formControlName]="i">{{ hobby.name }}</mat-checkbox>
+                </div>
+                <!-- <button class="btn btn-success mt-5 w-100" [disabled]="!userForm.valid">{{!isEditMode ? 'Add User':'Edit User'}}</button> -->
+                <button class="btn btn-success mt-5 w-100">{{!isEditMode ? 'Add User':'Edit User'}}</button>
+                <button class="btn btn-danger mt-3 w-100" (click)="onCancel()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

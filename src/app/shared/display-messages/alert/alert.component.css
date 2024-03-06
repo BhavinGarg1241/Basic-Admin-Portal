@@ -1,0 +1,18 @@
+.mat-dialog-title {
+    color: #333; 
+    font-size: 24px; 
+  }
+  
+  .mat-dialog-content {
+    color: #3f3f3f; 
+    font-size: 18px; 
+  }
+  
+  .mat-dialog-actions {
+    justify-content: space-between; 
+  }
+  
+  .mat-button {
+    min-width: 100px;
+  }
+  

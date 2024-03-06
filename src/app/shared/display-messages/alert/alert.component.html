@@ -1,0 +1,8 @@
+<h2 mat-dialog-title class="mat-dialog-title">Confirm Delete</h2>
+<div mat-dialog-content class="mat-dialog-content">
+  <p>{{ alertMessage }}</p>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button mat-button color="primary" (click)="cancelDelete()" class="mat-button">Cancel</button>
+  <button mat-button color="warn" (click)="confirmDelete()" class="mat-button">Delete</button>
+</div>
